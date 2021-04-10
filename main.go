@@ -30,7 +30,11 @@ func main() {
 		fmt.Println("path cannot be empty!")
 		return
 	}
-	configPath := *path + "/yapi-import.json"
+	configPath := *path
+	if !strings.HasSuffix(configPath, ".json"){
+		configPath = configPath + "/yapi-import.json"
+	}
+
 	bytes, err := ioutil.ReadFile(configPath)
 	if err != nil {
 		fmt.Printf("read file[%s] failed err=%v", configPath, err)
